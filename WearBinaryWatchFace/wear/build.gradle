@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "com.bytemesoftware.wear.faces.binary"
+        minSdkVersion 20
+        targetSdkVersion 20
+        versionCode 9
+        versionName "1.1.6"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore/keystore.jks")
+            storePassword "example"
+            keyAlias "alias"
+            keyPassword "example"
+        }
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.google.android.support:wearable:+'
+    compile 'com.google.android.gms:play-services-wearable:+'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+}
